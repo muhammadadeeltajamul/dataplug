@@ -580,14 +580,18 @@ class Form extends CI_Controller {
 
 //            $app_settings = $this->app_model->get_app_settings($slug);
 //            $list_view_settings = get_result_view_settings($slug);
-//            if (isset($list_view_settings->district_filter) && $list_view_settings->district_filter == 1) {
+//            if (isset($list_view_settings->district_filter) 
+// && $list_view_settings->district_filter == 1) {
 //
-//                $district_list = $this->form_results_model->get_distinct_district($slug);
+//                $district_list = 
+//            $this->form_results_model->get_distinct_district($slug);
 //                $data['district_list'] = $district_list;
 //            }
 //
-//            if (isset($list_view_settings->sent_by_filter) && $list_view_settings->sent_by_filter == 1) {
-//                $sent_by_list = $this->form_results_model->get_distinct_sent_by($slug);
+//            if (isset($list_view_settings->sent_by_filter) 
+//      && $list_view_settings->sent_by_filter == 1) {
+//                $sent_by_list = 
+//         $this->form_results_model->get_distinct_sent_by($slug);
 //                $data['sent_by_list'] = $sent_by_list;
 //            }
 
@@ -610,7 +614,8 @@ class Form extends CI_Controller {
                     if (array_key_exists("sent_by", $dynamic_filters)) {
                         $imei_no_string = implode(",", $dynamic_filters['sent_by']);
                         //get users name form imei_nos...
-                        $imei_no_list = $this->form_results_model->get_users_name_from_imei_no($imei_no_string);
+                        $imei_no_list = 
+       $this->form_results_model->get_users_name_from_imei_no($imei_no_string);
                         $name_arr = array();
                         foreach ($imei_no_list as $key => $val) {
                             $name_arr[$val['imei_no']] = $val['name'];
@@ -621,16 +626,20 @@ class Form extends CI_Controller {
 
                 //print_r($selected_form);die;
                 if (isset($filter_result->filters)) {
-                    $app_filter_list = isset($filter_result->filters->$form_li[0]) ? (array) $filter_result->filters->$form_li[0] : array();
+                    $app_filter_list = 
+       isset($filter_result->filters->$form_li[0]) ? (array) 
+       $filter_result->filters->$form_li[0] : array();
                 } else {
                     $app_filter_list = array();
                 }
 //                if (!empty($selected_form)) {
-//                    $app_filter_list = explode(',', $selected_form['possible_filters']);
+//                    $app_filter_list = 
+//                explode(',', $selected_form['possible_filters']);
 //                } else {
 //                    $app_filter_list = array('id');
 //                }
-//                $possible_filters_from_settings = $this->form_model->get_form_column_values($app_filter_list, $form_li[0]);
+//                $possible_filters_from_settings = 
+//$this->form_model->get_form_column_values($app_filter_list, $form_li[0]);
                 $possible_filters_from_settings = $app_filter_list;
                 $selected_uc = '';
                 $selected_pp = '';
