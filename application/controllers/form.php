@@ -716,16 +716,19 @@ class Form extends CI_Controller {
                 $final_send = array();
                 foreach ($forms_list as $final_view) {
                     if (in_array($final_view['form_id'], $form_list_posted)) {
-                        $final_send = array_merge($final_send, array($final_view['form_name'] => $final_view['form_id']));
+                        $final_send = array_merge($final_send, 
+            array($final_view['form_name'] => $final_view['form_id']));
                     }
-                    $view_list = array_merge($view_list, array($final_view['form_name'] => $final_view['form_id']));
+                    $view_list = array_merge($view_list, 
+            array($final_view['form_name'] => $final_view['form_id']));
                 }
                 $view_list = array_flip($view_list);
                 $data['form_lists'] = $view_list;
                 $data['form_list_selected'] = $final_send;
                 $form_list_filter = array();
                 foreach ($form_list_posted as $list) {
-                    $form_list_filter[] = array('form_id' => $list, 'table_name' => 'zform_' . $list);
+                    $form_list_filter[] = 
+            array('form_id' => $list, 'table_name' => 'zform_' . $list);
                 }
                 if (empty($to_date)) {
                     $to_date = "2013-06-03";
@@ -742,12 +745,17 @@ class Form extends CI_Controller {
 //                $sent_by = $this->input->post('sent_by_list');
 //                $data['selected_sent_by'] = $sent_by;
                 if (strtotime($to_date) > strtotime($from_date)) {
-                    $this->session->set_flashdata('validate', array('message' => 'Invalid Date selection. From Date should be greater than To Date.', 'type' => 'warning'));
+                    $this->session->set_flashdata('validate', 
+                    	array('message' => 
+        'Invalid Date selection. From Date should be greater than To Date.',
+        'type' => 'warning'));
                     redirect(base_url() . 'form/results/' . $form_id);
                 }
                 $data['form_id'] = $form_id;
                 if (!$this->acl->hasPermission('form', 'view')) {
-                    $this->session->set_flashdata('validate', array('message' => "You don't have enough permissions to do this task.", 'type' => 'warning'));
+                    $this->session->set_flashdata('validate', 
+        array('message' => "You don't have enough permissions to do this task.", 
+        'type' => 'warning'));
                     redirect(base_url() . 'apps');
                 }
                 $data['form_name'] = $selected_form['name'];
@@ -755,16 +763,19 @@ class Form extends CI_Controller {
                 $selected_app = $this->app_model->get_app($data['app_id']);
                 $data['app_name'] = $selected_app['name'];
 //                $data['filter'] = $changed_category;
-                /** Get Town based on app id for displaying town filter on list view* */
-//                $town_lists = $this->app_users_model->get_towns($selected_form['app_id']);
+/** Get Town based on app id for displaying town filter on list view* */
+//                $town_lists = 
+//                $this->app_users_model->get_towns($selected_form['app_id']);
 //                $town_list_array = array();
 //                foreach ($town_lists as $towns) {
 //                    if (!in_array($towns['town'], $town_list_array)) {
-//                        $town_list_array = array_merge($town_list_array, array($towns['town'] => $towns['town']));
+//                        $town_list_array = 
+//		array_merge($town_list_array, 
+//			array($towns['town'] => $towns['town']));
 //                    }
 //                }
 //                $data['town_filter'] = $town_list_array;
-                /** Get filters from  multiple forms * */
+/** Get filters from  multiple forms * */
 //                $multiple_filters = $this->form_model->get_form_filters($form_list_filter);
 //                $filter_attribute = array();
 //                $form_html_multiple = array();
